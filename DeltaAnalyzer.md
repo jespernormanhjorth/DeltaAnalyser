@@ -91,5 +91,64 @@ Rank by Missing_Count desc.
 - If no valid Product Line → return "No data."
 - If single Product Line in Master → gap = N/A.
 
+# DeltaAnalyser
+
+## Purpose
+Describe what DeltaAnalyser is and why it exists.
+
 ---
+
+## Scope
+Define what is included and excluded.
+
+---
+
+## Core Concepts
+Define key terms clearly and consistently.
+
+Example:
+- Delta
+- Analysis scope
+- Data source
+- Output
+
+---
+
+## Workflow
+
+### Step 1 – Input
+Describe what data is needed.
+
+### Step 2 – Processing
+Describe how analysis is performed.
+
+### Step 3 – Output
+Describe results and how they are used.
+
+---
+
+## Rules & Constraints
+List:
+- limitations
+- assumptions
+- mandatory steps
+
+---
+
+## Use Cases
+Examples of where DeltaAnalyser is used.
+
+---
+
+## Known Gaps / To Be Improved
+(Optional section the agent can help improve)
+
+---
+
+## Version
+Last updated: YYYY-MM-DD
+Version: X.X
+
+---
+
 
