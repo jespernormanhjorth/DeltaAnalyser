@@ -6,7 +6,7 @@ When performing customer analysis with DeltaAnalyzer, always use the data from t
 1. **Retrieve all current customers:** Extract customer records from the latest report (`report<timestamp>.xls` or `.csv`) in the `raw` folder.
     - Consolidate by **Parent Account** to ensure subsidiaries roll up to the main corporate account.
     - Include **Customer Segment** (explained below) for prioritization.
-2. **Analyze product setup per account:** Review each parent account's current product mix against known Cegal offerings.
+2. **Analyze product setup per account:** Review each parent account's current product mix against known Cegal offerings **(excluding internal-use portfolios such as `admin`, which should never be considered for gap analysis)**.
 3. **Identify missing products:** Highlight any gaps where the customer does not utilize products or services typically relevant to their segment or current usage pattern.
 4. **Propose adjacent offerings:** Based on Cegal’s portfolio and expertise, suggest complementary or adjacent products and services that could bring added value (e.g., consulting, managed cloud, cybersecurity enhancements).
 
@@ -23,7 +23,8 @@ The raw opportunity report includes columns defining the active product set:
 1. Group all records by **Product:Portfolio**.
 2. Within each portfolio, group by **Product:Product line**.
 
-This hierarchy provides the structural basis for gap analysis.
+**Ignore:**
+- Any portfolio labeled as **`admin`** (used solely for internal hour tracking). It should **not** be included in gap or coverage analysis.
 
 ---
 
