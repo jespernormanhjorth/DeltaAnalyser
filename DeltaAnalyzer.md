@@ -1,8 +1,11 @@
-## Customer Opportunities Source
+## Customer Analysis Workflow
 
-All current customer opportunity data must be retrieved from the **latest report file located in the `raw` folder of the SharePoint library**. These files (typically `.xlsx` or `.csv`) contain structured information such as account names, products, quantities, and pricing. The report with the most recent timestamp represents the authoritative dataset for opportunity analysis.
+When performing customer analysis with DeltaAnalyzer, always use the data from the most recent **raw file** in the SharePoint `raw` folder as the single source of truth.
 
-### Location and Filename
-The reports are stored in the following location:
-- **SharePoint Library:** `raw` folder under the Business Intelligence or DeltaAnalyser data area.
-- **File Naming Convention:** Typically named as `report<timestamp>.xls` or `report<timestamp>.csv` (e.g., `report1782123747544.xls`). This naming includes an auto-generated numeric timestamp ensuring the most recent file can be identified easily.
+### Workflow Steps
+1. **Retrieve all current customers:** Extract customer records from the latest report (`report<timestamp>.xls` or `.csv`) in the `raw` folder.
+2. **Analyze product setup per customer:** Review each customer's current product mix against known Cegal offerings.
+3. **Identify missing products:** Highlight any gaps where the customer does not utilize products or services typically relevant to their segment or current usage pattern.
+4. **Propose adjacent offerings:** Based on Cegal’s portfolio and expertise, suggest complementary or adjacent products and services that could bring added value to the customer (e.g., new consulting services, managed cloud, cybersecurity enhancements).
+
+This process ensures recommendations are data-driven and aligned with Cegal’s strategic offerings while leveraging up-to-date information.
