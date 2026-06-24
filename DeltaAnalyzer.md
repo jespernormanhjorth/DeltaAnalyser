@@ -1,50 +1,37 @@
 ## Customer Analysis Workflow
 
-When performing customer analysis with DeltaAnalyzer, always use the data from the most recent **raw file** in the SharePoint `raw` folder as the single source of truth.
+When performing customer analysis with DeltaAnalyzer, the **single source of truth** is the most recent raw dataset located in SharePoint at this fixed location:
+
+> **Canonical Raw Folder:** [BiS-Scrmt / raw](https://pangearocks.sharepoint.com/:f:/s/BiS-Scrmt/IgDyXq112Nz0TqPJ1BX4fqUuAadfi--aqdQjzqohw8JmsoM)
+
+### Live Data Requirement
+- All queries into this folder **must be executed live** (real-time calls), avoiding any cached or stale results.
+- Always target this exact folder for true raw data. **Do not attempt tenant-wide searches or heuristic matching.**
 
 ### Workflow Steps
-1. **Retrieve all current customers:** Extract customer records from the latest report (`report<timestamp>.xls` or `.csv`) in the `raw` folder.
-    - Consolidate records using **`ParentAccountName`** as the authoritative parent account column to group subsidiaries under the correct parent.
-    - Determine **Customer Segment** strictly from the column **`Account Name: Customer Segment`**:
-        - Use the exact value provided (Strategic, Premium, Priority, E-sell).
-        - If the field is blank, default to **E-sell**.
-        - Never infer or assume a higher rank than what is listed.
-2. **Analyze product setup per account group:** Review the parent account's combined product mix against known Cegal offerings (ignore any `admin` portfolio). Subsidiary handling:
-    - If **any subsidiary has a product**, treat it as covered for the entire parent group.
-    - If a product exists only at the parent, assume coverage extends to subsidiaries (do not flag as a gap).
-3. **Identify missing products:** Highlight only those portfolios/product lines absent across the entire parent group (parent plus all subsidiaries).
-4. **Propose adjacent offerings:** Suggest missing product portfolios and complementary services based on Cegal’s service reference.
+1. **Retrieve all current customers:**
+    - Identify the latest report file in the above folder.
+    - Parse columns strictly:
+        - Parent account group from **`ParentAccountName`**.
+        - Customer segment from **`Account Name: Customer Segment`**.
+          - If blank → **E-sell** default.
+          - No guessing or inference.
+        - Product structure from `Product:Portfolio` and `Product:Product line`.
+        - Ignore portfolios labeled `admin`.
+2. **Analyze product setup per account group:**
+    - Roll up child accounts under their parent.
+    - If any subsidiary has a product → mark as covered for parent group.
+    - If parent has product and subsidiary lacks → assume shared → not a gap.
+3. **Identify missing products:** Only those absent across the combined group.
+4. **Output Recommendations:**
+    - List missing product portfolios and lines.
+    - Suggest adjacent services (Cloud, Cybersecurity, Data & AI, App Mgmt, Consulting).
 
-This ensures accurate group-level evaluation and strict segment prioritization.
-
----
-
-### Product Hierarchy from Raw File
-Relevant Columns:
-- **Parent Account:** `ParentAccountName` (mandatory for grouping)
-- **Portfolio:** `Product:Portfolio`
-- **Product Line:** `Product:Product line`
-
-Ignore:
-- Any portfolio labeled `admin` (internal use only).
-
-Grouping:
-- Roll up all child records under `ParentAccountName` and aggregate product coverage before detecting gaps.
+### Important Enforcement
+- Folder path for raw data is **hardcoded in process**, never optional.
+- No cached lookups are allowed; each analysis session must run against **live data** from this folder.
 
 ---
 
-### Customer Segmentation Logic
-From raw file column **`Account Name: Customer Segment`**:
-1. Strategic
-2. Premium
-3. Priority
-4. E-sell (or default if blank)
-
----
-
-### Quick Reference: Adjacent Services
-- **Cloud Services** – Multi-cloud migration, orchestration
-- **Cybersecurity** – Compliance, identity, threat detection
-- **Data & Analytics** – AI-driven insights, data governance
-- **Application Management** – ERP optimization, hosting
-- **Consulting & Advisory** – Strategy design, digital transformation
+Refer to this location for every analysis or refresh cycle:  
+[Canonical Raw Data Folder](https://pangearocks.sharepoint.com/:f:/s/BiS-Scrmt/IgDyXq112Nz0TqPJ1BX4fqUuAadfi--aqdQjzqohw8JmsoM)
