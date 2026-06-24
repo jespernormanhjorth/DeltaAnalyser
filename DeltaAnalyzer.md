@@ -10,6 +10,21 @@ When performing customer analysis with DeltaAnalyzer, always use the data from t
 
 This process ensures recommendations are data-driven and aligned with Cegal’s strategic offerings while leveraging up-to-date information.
 
+---
+
+### Product Hierarchy from Raw File
+The raw opportunity report includes columns defining the active product set. To build the hierarchy and understand Cegal's portfolio structure:
+- **Primary Column:** `Product:Portfolio` — top-level category representing the product portfolio.
+- **Secondary Column:** `Product:Product line` — child category tied to one portfolio.
+
+**Grouping Logic:**
+1. Group all records by **Product:Portfolio**.
+2. Within each portfolio, group by **Product:Product line** (each product line belongs to exactly one portfolio).
+
+This hierarchy is the structural basis for gap analysis and targeted recommendations.
+
+---
+
 ### Quick Reference: Adjacent Services
 When analyzing gaps, consider the following Cegal service categories as potential upsell or cross-sell opportunities:
 - **Cloud Services:** Migration, optimization, and management for Azure, AWS, and hybrid environments.
