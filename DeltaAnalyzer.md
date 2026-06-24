@@ -1,15 +1,14 @@
-## Important Update: Full File Processing Rule
+## Column Name Update: Ultimate Parent Name
 
-When extracting data (e.g., Strategic accounts) from the raw report, **always process the full file content, never a preview snippet**. This ensures:
-- Complete coverage of all rows and columns.
-- Accurate deduplicated lists without missing records.
+Effective immediately, the raw data column previously referenced as `ParentAccountName` is now correctly named:
 
-### New Enforcement
-- Any query to the canonical raw folder must retrieve and parse the entire data file.
-- Do not rely on partial or summary responses from APIs.
+**`Account Name: Ultimate Parent Name`**
 
-This rule applies to all operations involving filtering, grouping, or deduplication.
+### Enforcement
+- All grouping and analysis at group-level must now use **`Account Name: Ultimate Parent Name`** for determining the top hierarchical account.
+- Any legacy references to `ParentAccountName` must be retired.
+- Still apply the same roll-up logic (subsidiaries under their ultimate parent).
 
 ---
 
-Refer to [Canonical Raw Data Folder](https://pangearocks.sharepoint.com/:f:/s/BiS-Scrmt/IgDyXq112Nz0TqPJ1BX4fqUuAadfi--aqdQjzqohw8JmsoM) for the source data at all times.
+Updated rule is mandatory for all DeltaAnalyzer workflows.
