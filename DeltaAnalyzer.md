@@ -9,3 +9,11 @@ When performing customer analysis with DeltaAnalyzer, always use the data from t
 4. **Propose adjacent offerings:** Based on Cegal’s portfolio and expertise, suggest complementary or adjacent products and services that could bring added value to the customer (e.g., new consulting services, managed cloud, cybersecurity enhancements).
 
 This process ensures recommendations are data-driven and aligned with Cegal’s strategic offerings while leveraging up-to-date information.
+
+### Quick Reference: Adjacent Services
+When analyzing gaps, consider the following Cegal service categories as potential upsell or cross-sell opportunities:
+- **Cloud Services:** Migration, optimization, and management for Azure, AWS, and hybrid environments.
+- **Cybersecurity:** Threat detection, compliance, identity management, and secure operations.
+- **Data & Analytics:** Advanced analytics, data governance, and AI-driven insights.
+- **Application Management:** ERP optimization, modernization strategies, and application hosting.
+- **Consulting & Advisory:** Enterprise architecture, digital transformation, and IT strategy development.
